@@ -12,6 +12,7 @@ let github = githubhook({
 github.on('push', function (repo, ref, data) {
   ref = ref.split('/');
   ref = ref[ref.length-1];
-  exec('su bulletin -c \'cd /home/bulletin/web && git pull -q origin '+ref+'\'', function(){});
+  if (ref.toLowerCase() == 'master')
+    exec('su bulletin -c \'cd /home/bulletin/web && git pull -q origin '+ref+'\'', function(){});
 });
 github.listen();
