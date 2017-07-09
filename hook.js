@@ -7,7 +7,7 @@ let github = githubhook({
   host: '0.0.0.0',
   port: 3908,
   path: '/push',
-  secret: fs.readFileSync(path.join(__dirname, 'config', 'hook_secret'), 'ascii'),
+  secret: fs.readFileSync(path.join(__dirname, 'config', 'hook_secret'), 'ascii').trim(),
 });
 github.on('push', function (repo, ref, data) {
   ref = ref.split('/');
